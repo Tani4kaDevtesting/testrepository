@@ -1,0 +1,28 @@
+// Whether an update was scheduled during the currently executing render pass.
+let didScheduleRenderPhaseUpdate: boolean = false;
+// Lazily created map of render-phase updates
+let renderPhaseUpdates: Map<
+  UpdateQueue<any, any>,
+  Update<any, any>,
+> | null = null;
+// Counter to prevent infinite loops.
+// TODO: This is only global so that we can detect whether we're currently
+// re-rendering. Use a custom dispatcher instead and make this local.
+let numberOfReRenders: number = 0;
+const RE_RENDER_LIMIT = 25;
+
+@@ -393,7 +390,6 @@ export function renderWithHooks(
+  // workInProgressHook = null;
+
+  // didScheduleRenderPhaseUpdate = false;
+  // renderPhaseUpdates = null;
+  // numberOfReRenders = 0;
+
+  // TODO Warn if no hooks are used at all during mount, then some are used during update.
+@@ -453,7 +449,6 @@ export function renderWithHooks(
+      children = Component(props, refOrContext);
+    } while (didScheduleRenderPhaseUpdate);
+
+    renderPhaseUpdates = null;
+    numberOfReRenders = 0;
+  }
