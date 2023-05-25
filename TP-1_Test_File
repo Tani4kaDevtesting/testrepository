@@ -26,4 +26,4 @@ const RE_RENDER_LIMIT = 25;
     renderPhaseUpdates = null;
     numberOfReRenders = 0;
   }
-test
+test test
