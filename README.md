@@ -1,2 +1,2 @@
 # testrepository
-To test XSS injection attack
+XSS injection attack
