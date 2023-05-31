@@ -22,7 +22,3 @@ const RE_RENDER_LIMIT = 25;
 @@ -453,7 +449,6 @@ export function renderWithHooks(
       children = Component(props, refOrContext);
     } while (didScheduleRenderPhaseUpdate);
-
-    renderPhaseUpdates = null;
-    numberOfReRenders = 0;
-  }
